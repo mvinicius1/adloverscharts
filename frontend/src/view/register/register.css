@@ -1,0 +1,24 @@
+.register-content{
+    width: 100%;
+    padding:15%;
+    background-color: #F3B9B9;
+    height: 100vh;
+    margin-bottom: 20px;
+
+    
+}
+
+.btn-register{    
+    color: black;
+}
+
+.form-control{
+    margin-bottom: 15px;
+}
+
+.opcoes-register a{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+
+}
