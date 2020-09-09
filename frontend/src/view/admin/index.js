@@ -11,7 +11,7 @@ function Admin(){
 
     const id = useSelector(state =>{return state.userId})
     
-    function isAdmin(){
+  /*   function isAdmin(){
         axios.get(`${process.env.REACT_APP_URL}/user/${id}`)
         .then (user => {
             console.log(user.data)
@@ -21,11 +21,11 @@ function Admin(){
                return setMsg('ERRO')
             }
         })
-    } 
+    }  */
 
     return(<>
-        {isAdmin()} 
-        {msg === 'ERRO'? <Redirect to = "/" /> : null }
+       {/*  {isAdmin()} 
+        {msg === 'ERRO'? <Redirect to = "/" /> : null } */}
          
         <Navbar/>
         <div>       

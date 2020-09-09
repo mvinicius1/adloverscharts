@@ -67,7 +67,7 @@ async function  logIn (req,res) {
             email:userFromDB.data().email,
             name:userFromDB.data().name,
             phone:userFromDB.data().phone,
-            /* admin:userFromDB.data().admin, */
+            admin:userFromDB.data().admin,
             id:userFromDB.data().id,
             type: 'LOG_IN',
             setMsgtype:'sucesso',

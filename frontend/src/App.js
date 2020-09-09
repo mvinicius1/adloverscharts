@@ -14,40 +14,29 @@ import Admin from './view/admin'
 import Dados from './view/dados'
 import Pagamentos from './view/pagamentos'
 import Ajuda from './view/ajuda'
-import jwtDecode from 'jwt-decode' 
 import AuthRoute from './utils/AuthRoute'
 import SystemRoute from './utils/SystemRoute'
-
-
-let authenticated;
-const token = localStorage.adlovers_localstorage;
-if(token){
-  const decodedToken = jwtDecode (token);
-  if(decodedToken.exp * 1000 < Date.now()){
-    window.location.href ='/login'
-    authenticated = false
-  }else{
-    authenticated = true
-  }
-}
+/* import AdminRoute from './utils/AdminRoute'; */
 
 function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-    <Router>
-      <AuthRoute exact path='/login' component={Login} authenticated={authenticated}/>
-      <AuthRoute exact path='/cadastro' component={NewUser} authenticated={authenticated}/>
-      <SystemRoute exact path='/' component={Home} authenticated={authenticated}/>
-      <AuthRoute exact path='/recuperarsenha' component={Recpass} authenticated={authenticated}/>
-      <SystemRoute exact path='/facebook' component={Facebook} authenticated={authenticated}/>
-      <SystemRoute exact path='/google' component={Google} authenticated={authenticated}/>
-      <SystemRoute exact path='/admin' component={Admin} authenticated={authenticated}/>
-      <SystemRoute exact path='/dados' component={Dados} authenticated={authenticated}/>
-      <SystemRoute exact path='/pagamentos' component={Pagamentos} authenticated={authenticated}/>
-      <SystemRoute exact path='/ajuda' component={Ajuda} authenticated={authenticated}/>
-    </Router>
-    </PersistGate>
+        <Router>
+          
+          <AuthRoute exact path='/login' component={Login} />
+          <AuthRoute exact path='/cadastro' component={NewUser} />
+          <AuthRoute exact path='/recuperarsenha' component={Recpass} />
+          <SystemRoute exact path='/home' component={Home} />
+          <SystemRoute exact path='/facebook' component={Facebook} />
+          <SystemRoute exact path='/google' component={Google} />
+          <SystemRoute exact path='/dados' component={Dados} />
+          <SystemRoute exact path='/pagamentos' component={Pagamentos} />
+          <SystemRoute exact path='/ajuda' component={Ajuda} />
+          <SystemRoute exact path='/admin' component={Admin} />
+        
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }

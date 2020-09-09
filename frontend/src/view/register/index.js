@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import {Link, Redirect} from 'react-router-dom';
 import Navbar from '../../components/navbar'
@@ -18,9 +18,7 @@ function NewUser(){
     const [spinner, setSpinner] = useState(false);
     
         
-
-    function signUp(){
-
+    const signUp = useCallback(() =>{
         setMsgtype(null);
 
 
@@ -69,7 +67,8 @@ function NewUser(){
                 setMsgtype('error')
                     setMsg('Estamos com problemas em nosso sistema, volte mais tarde')
             })
-           }
+
+    })
 
     return (<>
         <Navbar/>

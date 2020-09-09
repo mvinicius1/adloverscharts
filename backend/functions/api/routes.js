@@ -21,7 +21,7 @@ app.route('/users')
 
 // FACEBOOK ROUTES
 app.route("/facebook")
-    .all(authController.isLogged)
-    .get(facebookController.getInfo)
+    /* .all(authController.isLogged) */
+    .get(facebookController.teste)
 
 module.exports = app

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './dados.css'
 import {Link, Redirect} from 'react-router-dom';
 import Navbar from '../../components/navbar'
@@ -10,18 +10,17 @@ import 'firebase/auth';
 function Dados(){
   
   const userName = useSelector((state) => {
-    return state.userName
+    return state.auth.userName
   });
   const userEmail = useSelector((state) => {
-    return state.userEmail
+    return state.auth.userEmail
   });
   const userPhone = useSelector((state) => {
-    return state.userPhone
+    return state.auth.userPhone
   });
   const [msgType, setMsgtype] = useState('');
   
-
-  function changePassword(){
+  const changePassword = useCallback (() =>{
     setMsgtype(null)
     firebase.auth().sendPasswordResetEmail(userEmail).then(()=> {
       setMsgtype('sucesso')
@@ -29,7 +28,8 @@ function Dados(){
     .catch((error) => 
       setMsgtype('error'))
     ;
-  }
+
+  })
   
     return(<>
       <Navbar/>

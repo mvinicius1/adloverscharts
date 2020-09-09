@@ -7,20 +7,20 @@ const app = express();
 
 const cors = require('cors')
 
-const serviceAccount = require("./config/adloverbackend-firebase-adminsdk-bcoz8-d1365546a7.json");
+const serviceAccount = require("./config/adlovers-41b00-firebase-adminsdk-8fhis-8689399031.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://adloverbackend.firebaseio.com"
+    databaseURL: "https://adlovers-41b00.firebaseio.com"
   });
 const config = {    
-        apiKey: "AIzaSyCTb3MPepgFvRv14v7UebdcgKMk7DiK2vU",
-        authDomain: "adloverbackend.firebaseapp.com",
-        databaseURL: "https://adloverbackend.firebaseio.com",
-        projectId: "adloverbackend",
-        storageBucket: "adloverbackend.appspot.com",
-        messagingSenderId: "971163477289",
-        appId: "1:971163477289:web:c27574d9dbf829b2ac8338"
-      };
+  apiKey: "AIzaSyAInAnDTSkhVQ9xODEIs2QMNF1c8pThah4",
+  authDomain: "adlovers-41b00.firebaseapp.com",
+  databaseURL: "https://adlovers-41b00.firebaseio.com",
+  projectId: "adlovers-41b00",
+  storageBucket: "adlovers-41b00.appspot.com",
+  messagingSenderId: "508228833470",
+  appId: "1:508228833470:web:52078753c8b81b416a8eef"
+              };
 firebase.initializeApp(config)
 const db = admin.firestore();
 

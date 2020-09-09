@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './recpass.css'
 import {Link} from 'react-router-dom';
 import Navbar from '../../components/navbar'
@@ -10,14 +10,15 @@ function Recpass(){
     
     const [email, setEmail] = useState();
     const [msg, setMsg] = useState();
-
-    function recpassword(){
+    
+    const recpassword = useCallback(() =>{
         firebase.auth().sendPasswordResetEmail(email).then(resultado => {
             setMsg('Enviamos um link para seu email para você redefinir sua senha!');
         }).catch (err => {
             setMsg('Seu email está correto? Não foi possível identificar um cadastro!')
         })
-    }
+
+    })
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './login.css'
 import {Link, Redirect} from 'react-router-dom';
 import Navbar from '../../components/navbar'
@@ -21,8 +21,7 @@ function Login(){
     const dispatch = useDispatch();
     const db= firebase.firestore();
 
-    function signin(){
-        
+    const signin = useCallback(() =>{
         setSpinner(1)
         const user = { email, password}
         axios.post(`${process.env.REACT_APP_URL}/login`, user)
@@ -36,7 +35,7 @@ function Login(){
                     userEmail: res.data.email, 
                     userName: res.data.name, 
                     userPhone: res.data.phone,
-                    /* userAdmin: res.data.admin,  */
+                    userAdmin: res.data.admin, 
                     })
                     localStorage.setItem('adlovers_localstorage', `Bearer ${res.data.token}`)
                     axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
@@ -52,8 +51,8 @@ function Login(){
                      setMsgtype('error'); 
         }) 
 
-    }
-
+    })
+  
 
     return (
         <>

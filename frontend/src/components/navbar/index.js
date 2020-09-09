@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './navbar.css'
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
@@ -10,21 +10,21 @@ function Navbar(){
     const dispatch = useDispatch();
 
     const userName = useSelector((state) => {
-      return state.userName
+      return state.auth.userName
     });
 
     const userAdmin = useSelector((state) =>{
-      return state.userAdmin
+      return state.auth.userAdmin
     })  ;
 
-    function logout(){
-            firebase.auth().signOut()
+    const logout = useCallback(() =>{
+      firebase.auth().signOut()
       localStorage.removeItem('adlovers_localstorage')
       localStorage.clear('adloversusers')
       delete Axios.defaults.headers.common['Authorization']
       window.location.href='/login'
       dispatch({type: 'LOG_OUT'});
-    }
+    })
 
     return(
         <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
@@ -36,7 +36,7 @@ function Navbar(){
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       <li className="nav-item active">
-        <Link to="/" className="nav-link" >Início</Link>
+        <Link to="/home" className="nav-link" >Início</Link>
       </li>
 
         {           localStorage.adlovers_localstorage ?
@@ -46,7 +46,7 @@ function Navbar(){
       <li className="nav-item"> <Link to="/google" className="nav-link" href="#">Google</Link></li>
      
       
-      <li className="nav-item dropdown">
+      {/* <li className="nav-item dropdown">
         <span className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Serviços
         </span>
@@ -57,7 +57,7 @@ function Navbar(){
           <div className="dropdown-divider"></div>
           <a className="dropdown-item" href="#">Meus Arquivos</a>
         </div>
-      </li>
+      </li> */}
       
       <ul className="float-right">
       <li className="nav-item float-right"> <Link to='/login' className="nav-link" onClick={logout} href="#">Sair</Link></li>
@@ -71,8 +71,8 @@ function Navbar(){
           <Link to="/dados" className="dropdown-item">Dados</Link>
           <Link to="/pagamentos" className="dropdown-item">Pagamentos</Link>
           <Link to="/ajuda" className="dropdown-item">Preciso de ajuda</Link>
-          {/* <div className="dropdown-divider"></div>
-          {userAdmin ? <Link to ='/admin' className="dropdown-item">Admin</Link> : null} */}
+          <div className="dropdown-divider"></div>
+          {userAdmin ? <Link to ='/admin' className="dropdown-item">Admin</Link> : null} 
         </div>
       </li>
       </>
